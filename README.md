@@ -66,26 +66,26 @@ rake console
 
 ```ruby
 hello = Song.create(name: "Hello")
-=> #<Song:0x007fc75a8de3d8 id: nil, name: "Hello", artist_id: nil, genre_id: nil>
+=> #<Song:0x007fc75a8de3d8 id: 1, name: "Hello", artist_id: nil, genre_id: nil>
 ```
 
 ```ruby
 adele = Artist.create(name: "Adele")
-=> #<Artist:0x007fc75b8d9490 id: nil, name: "Adele">
+=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
 So, we know that an individual song has an `artist_id` attribute. We *could* associate `hello` to `adele` by setting `hello.artist_id=` equal to the `id` of the `adele` object. BUT! Active Record makes it so easy for us. The macros we implemented in our classes allow us to associate a song object directly to an artist object:
 
 ```ruby
 hello.artist = adele
-=> #<Artist:0x007fc75b8d9490 id: nil, name: "Adele">
+=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
 Now, we can ask `hello` who its artist is:
 
 ```ruby
 hello.artist
-=> #<Artist:0x007fc75b8d9490 id: nil, name: "Adele">
+=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
 We can even chain methods to ask `hello` for the *name* of its artist:
@@ -99,15 +99,15 @@ We can tell the artist about their song:
 
 ```ruby
 rolling_in_the_deep = Song.create(name: "Rolling in the Deep")
-=> #<Song:0x007fc75bb4d1e0 id: nil, name: "Rolling in the Deep", artist_id: nil, genre_id: nil>
+=> #<Song:0x007fc75bb4d1e0 id: 2, name: "Rolling in the Deep", artist_id: nil, genre_id: nil>
 ```
 
 ```ruby
 adele.songs << rolling_in_the_deep
-=> [ #<Song:0x007fc75bb4d1e0 id: nil, name: "Rolling in the Deep", artist_id: nil, genre_id: nil>]
+=> [ #<Song:0x007fc75bb4d1e0 id: 2, name: "Rolling in the Deep", artist_id: 1, genre_id: nil>]
 
 rolling_in_the_deep.artist
-=> #<Artist:0x007fc75b8d9490 id: nil, name: "Adele">
+=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
 # Let's get started with the lab
